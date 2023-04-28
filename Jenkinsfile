@@ -10,6 +10,7 @@ pipeline {
                 //script {
 			//scmVars = checkout scm
 			//echo 'scm : the commit id is ' + scmVars.GIT_COMMIT
+                }
             }    
         } 
         
