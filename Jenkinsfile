@@ -1,32 +1,29 @@
-pipeline 
-{
+pipeline {
+
     agent any
 
-     stages 
-     {
-        //stage('Get Code') {
+    stages {
+        stage('Get Code') {
             steps {
                 // Obtener código del repo
                 //git 'https://github.com/javk13/HelloWorld.git'
-		//script {
-			//scmVars = checkout scm (script no conocido)
-			//echo 'scm : the commit id is ' + scmVars.GIT_COMMIT (script no conocido)
-		//}
+		        //script {
+			    //scmVars = checkout scm (script no conocido)
+			    //echo 'scm : the commit id is ' + scmVars.GIT_COMMIT (script no conocido)
+		        //}
             }
         }
         
-        stage('Build') 
-        {
+        stage('Build') {
             steps {
                 echo 'Que NOOOOO, python no compila código!!!'
-		//echo 'El workspace contiene el commit \'' + scmVars.GIT_COMMIT + '\' de la rama \'' + scmVars.GIT_BRANCH + '\'' (Comando desconocido)
+		        //echo 'El workspace contiene el commit \'' + scmVars.GIT_COMMIT + '\' de la rama \'' + scmVars.GIT_BRANCH + '\'' (Comando desconocido)
                 echo WORKSPACE
                 sh 'ls -la'
             }
         }
         
-        stage('Tests') 
-        {
+        stage('Tests') {
             parallel {
                 stage('Unit') {
                     steps {
@@ -39,8 +36,7 @@ pipeline
                         }    
                     }
                 }
-                stage('Service') 
-                {
+                stage('Service') {
                     steps {
                         catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                             sh '''
@@ -57,8 +53,7 @@ pipeline
                 }
             }
         }
-        stage ('Results') 
-        {
+        stage ('Results') {
             steps {
                 junit 'result*.xml'
             }
