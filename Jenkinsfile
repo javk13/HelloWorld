@@ -45,7 +45,7 @@ pipeline {
                             export FLASK_APP=app/api.py
                             export FLASK_ENV=development
                             flask run &
-                            java -jar /home/agent1/workspace/DevOps_Unir/test2/test/wiremock/wiremock-jre8-standalone-2.35.0.jar --port 9090 --root-dir /home/agent1/workspace/DevOps_Unir/test2/test/wiremock &
+                            java -jar /home/agent1/workspace/DevOps_Unir/test2/test/wiremock-jre8-standalone-2.35.0.jar --port 9090 --root-dir /home/agent1/workspace/DevOps_Unir/test2/test/wiremock &
                             export PYTHONPATH=${WORKSPACE}
                             sleep 1; pytest-3 --junitxml=result-unit.xml test/rest
                             '''
