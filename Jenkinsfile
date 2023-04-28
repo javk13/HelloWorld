@@ -8,7 +8,7 @@ pipeline {
                 // Obtener código del repo con comando jenkis del plugin github
                 //git 'https://github.com/javk13/helloworld'
                 //script {
-			//scmVars = checkout scm
+			//scmVars = checkout scm                (SCRIPT DESCONOCIDO)
 			//echo 'scm : the commit id is ' + scmVars.GIT_COMMIT
                 }
             }    
@@ -18,6 +18,7 @@ pipeline {
             steps {
                 echo 'Que NOOOOO, python no compila código'
                 echo WORKSPACE
+                //echo 'El workspace contiene el commit \'' + scmVars.GIT_COMMIT + '\' de la rama \'' + scmVars.GIT_BRANCH + '\''     (DESCONOCIDO)
                 sh 'ls -la'
             }    
         }
@@ -28,7 +29,6 @@ pipeline {
                     steps {
                         //catchError-captura errores para continuar pipeline y resto de etapas. 
                         catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
-                        //'/var/jenkins_home/workspace/DevOps_Unir/test2'  Es la ruta del workspace 
                             sh '''
                             export PYTHONPATH=${WORKSPACE}
                             pytest-3 --junitxml=result-unit.xml test/unit
@@ -38,9 +38,6 @@ pipeline {
                 }
                 stage('Service') {
                     steps {
-                        // -NO ME FUNCIONA:java -jar '${WORKSPACE}/wiremock-jre8-standalone-2.35.0.jar' --port 9090 --root-dir '${WORKSPACE}/wiremock' & 
-                        // - ME FUNCIONA: java -jar /home/agent1/workspace/DevOps_Unir/test2/test/wiremock/wiremock-jre8-standalone-2.35.0.jar --port 9090 --root-dir /home/agent1/workspace/DevOps_Unir/test2/test/wiremock &
-                        // --port 9090 --root-dir '/var/jenkins_home/workspace/DevOps_Unir/test2/test/wiremock' $
                         catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                             sh '''
                             export FLASK_APP=app/api.py
@@ -50,6 +47,7 @@ pipeline {
                             export PYTHONPATH=${WORKSPACE}
                             sleep 1; pytest-3 --junitxml=result-unit.xml test/rest
                             '''
+                        //PING -n 21 127.0.0.1>nul   (Forma LIMPIA y desconocida de retrasar ejecución pytest)
                         }
                     }
                 }
