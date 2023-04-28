@@ -6,7 +6,7 @@ pipeline {
             steps {
                 // Obtener código del repo
                 //git 'https://github.com/javk13/HelloWorld.git'
-		script {
+		//script {
 			//scmVars = checkout scm (script no conocido)
 			//echo 'scm : the commit id is ' + scmVars.GIT_COMMIT (script no conocido)
 		}
