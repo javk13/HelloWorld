@@ -4,7 +4,7 @@ pipeline {
 
     stages {
         //stage('Get Code') {
-            steps {
+            steps //{
                 // Obtener código del repo
                 //git 'https://github.com/javk13/HelloWorld.git'
 		        //script {
