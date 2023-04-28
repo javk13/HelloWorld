@@ -9,7 +9,7 @@ pipeline {
 		//script {
 			//scmVars = checkout scm (script no conocido)
 			//echo 'scm : the commit id is ' + scmVars.GIT_COMMIT (script no conocido)
-		}
+		//}
             }
         }
         
@@ -38,7 +38,7 @@ pipeline {
                 stage('Service') {
                     steps {
                         catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
-                        sh '''
+                            sh '''
                             export FLASK_APP=app/api.py
                             export FLASK_ENV=development
                             flask run &
