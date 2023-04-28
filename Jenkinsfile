@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Get Code') {
+        //stage('Get Code') {
             steps {
                 // Obtener código del repo
                 //git 'https://github.com/javk13/HelloWorld.git'
@@ -11,8 +11,8 @@ pipeline {
 			    //scmVars = checkout scm (script no conocido)
 			    //echo 'scm : the commit id is ' + scmVars.GIT_COMMIT (script no conocido)
 		        //}
-            }
-        }
+            //}
+        //}
         
         stage('Build') {
             steps {
