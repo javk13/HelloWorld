@@ -2,7 +2,7 @@ pipeline {
     agent any
 
      stages {
-        stage('Get Code') {
+        //stage('Get Code') {
             steps {
                 // Obtener código del repo
                 //git 'https://github.com/javk13/HelloWorld.git'
