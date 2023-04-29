@@ -2,6 +2,17 @@ pipeline {
     agent any
     
     stages {
+
+        stage('Clean Workspace'){
+		    steps{
+			//limpiamos los directorios de trabajo, que se descarge la info
+			    sh '''
+				rm -fr $WORKSPACE/*
+				ls -lrth $WORKSPACE/
+			    '''
+		    }
+	    }
+
         stage('Get Code') {
             steps {
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
@@ -43,7 +54,7 @@ pipeline {
                             export FLASK_APP=app/api.py
                             export FLASK_ENV=development
                             flask run &
-                            java -jar /home/agent1/workspace/DevOps_Unir/test2/test/wiremock-jre8-standalone-2.35.0.jar --port 9090 --root-dir /home/agent1/workspace/DevOps_Unir/test2/test/wiremock &
+                            java -jar $WORKSPACE/test/wiremock-jre8-standalone-2.35.0.jar --port 9090 --root-dir $WORKSPACE/test/wiremock &
                             export PYTHONPATH=${WORKSPACE}
                             sleep 1; pytest-3 --junitxml=result-unit.xml test/rest
                             '''
