@@ -17,7 +17,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                 // Obtener código del repo con comando jenkis del plugin github
-                //git 'https://github.com/javk13/helloworld'
+                git 'https://github.com/javk13/HelloWorld.git'
                 //script {
 			//scmVars = checkout scm                (SCRIPT DESCONOCIDO)
 			//echo 'scm : the commit id is ' + scmVars.GIT_COMMIT
